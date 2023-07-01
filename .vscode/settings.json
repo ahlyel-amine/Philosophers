@@ -2,6 +2,12 @@
     "files.associations": {
         "*.excalidraw": "json",
         "*.excalidrawlib": "json",
-        "libft.h": "c"
+        "libft.h": "c",
+        "string.h": "c",
+        "pthread.h": "c",
+        "stdlib.h": "c",
+        "unistd.h": "c",
+        "stdbool.h": "c",
+        "stdio.h": "c"
     }
 }

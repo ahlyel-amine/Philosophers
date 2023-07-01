@@ -15,10 +15,10 @@ int      foo(int *i)
         // pthread_mutex_try_lock()
         // mtx will be accessed by : t1 , t2
         pthread_mutex_lock(&mtx);
-        printf("lock\n"); 
+        printf("lock\n");
         (*i)++;
         pthread_mutex_unlock(&mtx);
-        printf("unlock\n"); 
+        printf("unlock\n");
     }
     pthread_mutex_destroy(&mtx);
     return (100);
@@ -36,13 +36,10 @@ int main()
     //  create t2
     pthread_create(&t2, NULL, (void *)foo, &i);
     pthread_create(&t3, NULL, (void *)foo, &i);
-
     /* Waiting for threads t1, t2, main thread*/
     pthread_join(t1, NULL);
     pthread_join(t2, NULL);
     pthread_join(t3, NULL);
-
-    printf("%d\n", i);
-    
+    printf("%d\n", i);    
     return (0);
 }
