@@ -17,6 +17,9 @@ void print_shape(int num1, int num2)
 
 int main(void)
 {
-    print_shape(4, 3);
+    // print_shape(4, 3);
+    int c = (4 << 8) | 0b100;
+    if (c & 0b100)
+        printf("%d\n", c >> 8);
     return (0);
 }
