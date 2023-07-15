@@ -6,11 +6,20 @@
 /*   By: aahlyel <aahlyel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 00:10:30 by aahlyel           #+#    #+#             */
-/*   Updated: 2023/07/15 04:58:35 by aahlyel          ###   ########.fr       */
+/*   Updated: 2023/07/15 08:32:50 by aahlyel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
+
+bool	dead_check(t_philo_single_data *data)
+{
+	pthread_mutex_lock(&data->lp->catch);
+	if (dead)
+		return (true);
+	pthread_mutex_unlock(&data->lp->catch);
+	return (false);
+}
 
 long long	get_time()
 {
@@ -41,7 +50,6 @@ void	sleep_job_time(long long sleep_time)
 
 void	print_msg(t_philo_single_data *data, int msg, long long time)
 {
-	(void)time;
 	pthread_mutex_lock(&data->lp->catch);
 	if (dead)
 	{

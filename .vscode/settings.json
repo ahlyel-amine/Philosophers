@@ -13,6 +13,11 @@
         "philo.h": "c",
         "_pthread_types.h": "c",
         "__locale": "c",
-        "ios": "c"
+        "ios": "c",
+        "array": "c",
+        "iterator": "c",
+        "string": "c",
+        "string_view": "c",
+        "vector": "c"
     }
 }

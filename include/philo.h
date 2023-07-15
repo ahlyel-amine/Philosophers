@@ -6,7 +6,7 @@
 /*   By: aahlyel <aahlyel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 03:28:55 by aahlyel           #+#    #+#             */
-/*   Updated: 2023/07/15 06:12:24 by aahlyel          ###   ########.fr       */
+/*   Updated: 2023/07/15 08:43:43 by aahlyel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ enum enum_msg
 	THINK	= 0b100,
 	DEAD	= 0b1000,
 	FORK	= 0b10000,
+	LEFT,
+	RIGHT
 };
 
 size_t				ft_strlen(const char *s);
@@ -68,6 +70,7 @@ void				_think(t_philo_single_data *data);
 long long			get_time();
 void				sleep_job_time(long long sleep_time);
 void				print_msg(t_philo_single_data *data, int msg, long long time);
+bool				dead_check(t_philo_single_data *data);
 
 
 #endif
