@@ -1,10 +1,10 @@
 
 
 SRC =	\
-		src/philo.c 
+		src/philo.c src/forks.c src/init_data.c src/jobs.c src/parser.c src/tools.c src/libc_tools.c
 
-HEADERS = include/philo.h lib/libft/include/libft.h
-
+HEADERS = include/philo.h
+# Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo
 CC = cc
 
 OBJ_DIR = obj
@@ -14,14 +14,13 @@ OBJ =  $(patsubst %.c, obj/%.o , $(SRC))
 NC			= '\e[0m'
 HBLU		= '\e[1;94m'
 BIN_DIR		= bin/
-CFLAGS		= -Wall -Wextra -Werror -fsanitize=thread
+CFLAGS		= -Wall -Wextra -Werror  -fsanitize=thread
 NAME		= philo
 
 all : ${NAME}
 
 ${NAME} : ${OBJ}
-	make -C lib/libft
-	cc -g ${CFLAGS} ${OBJ} lib/libft/bin/libft.a -o ${NAME}
+	cc -g ${CFLAGS} ${OBJ} -o ${NAME}
 
 obj/%.o : %.c $(HEADERS)
 	mkdir -p $(dir $@)
@@ -29,11 +28,9 @@ obj/%.o : %.c $(HEADERS)
 	$(CC) -g $(CFLAGS) -c $< -o $@
 
 clean : 
-	make clean -C lib/libft
 	rm -rf ${OBJ_DIR}
 
 fclean : clean
-	make fclean -C lib/libft
 	rm -rf ${NAME} ${BIN_DIR}
 
 re : fclean all
