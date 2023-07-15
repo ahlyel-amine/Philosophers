@@ -1,34 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aahlyel <aahlyel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/23 23:57:02 by aahlyel           #+#    #+#             */
-/*   Updated: 2023/07/15 06:01:01 by aahlyel          ###   ########.fr       */
+/*   Created: 2023/07/12 00:09:46 by aahlyel           #+#    #+#             */
+/*   Updated: 2023/07/12 00:10:07 by aahlyel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-int main(int ac, char **av)
+int	str_is_digit(char *str)
 {
-	t_philo	data;
+	int	i;
 
-	memset(&data, 0, sizeof(data));
-	if ((ac == 5 || ac == 6))
+	i = 0;
+	while (str[i])
 	{
-		if (!check_syntax(ac, av))
-			return (ft_putendl_fd("invalid arguments", 2), 0);
-		if (get_data(&data, ac, av))
-			return (1);
+		if (!ft_isdigit(str[i]))
+			return (0);
+		i++;
 	}
-	if (ac == 5)
-		take_forks(init_data(data), data);
-	else if (ac == 6)
-		;
-	else
-		ft_putendl_fd("invalid arguments", 2);
-	return (0);
+	return (1);
+}
+
+int	check_syntax(int ac, char **av)
+{
+	int	i;
+
+	i = 1;
+	while (i < ac)
+	{
+		if (!str_is_digit(av[i]))
+			return (0);
+		i++;
+	}
+	return (1);
 }

@@ -8,6 +8,11 @@
         "stdlib.h": "c",
         "unistd.h": "c",
         "stdbool.h": "c",
-        "stdio.h": "c"
+        "stdio.h": "c",
+        "__threading_support": "c",
+        "philo.h": "c",
+        "_pthread_types.h": "c",
+        "__locale": "c",
+        "ios": "c"
     }
 }
