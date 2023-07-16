@@ -13,6 +13,7 @@
         "philo.h": "c",
         "_pthread_types.h": "c",
         "__locale": "c",
-        "ios": "c"
+        "ios": "c",
+        "locale": "c"
     }
 }

@@ -6,7 +6,7 @@
 /*   By: aahlyel <aahlyel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 03:28:55 by aahlyel           #+#    #+#             */
-/*   Updated: 2023/07/15 06:12:24 by aahlyel          ###   ########.fr       */
+/*   Updated: 2023/07/16 03:24:14 by aahlyel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct s_philo
 	int				tm_eat;
 	int				tm_sleep;
 	int				tm_die;
-	int				eat_counter;
+	int				meals_number;
 	long long		time;
 	pthread_mutex_t	catch;
 }   t_philo;
@@ -43,6 +43,8 @@ typedef struct s_philo_single_data	//?	read
 	pthread_mutex_t	left;
 	pthread_mutex_t	*right;
 	t_philo			*lp;
+	int				eat_counter;
+	int				philo_eaten_nbr_meals;
 }   t_philo_single_data;
 
 enum enum_msg

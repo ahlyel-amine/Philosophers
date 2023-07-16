@@ -6,7 +6,7 @@
 /*   By: aahlyel <aahlyel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 00:06:28 by aahlyel           #+#    #+#             */
-/*   Updated: 2023/07/15 06:01:43 by aahlyel          ###   ########.fr       */
+/*   Updated: 2023/07/16 01:06:52 by aahlyel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ bool	get_data(t_philo *data, int ac, char **av)
 	if (data->philos > 200 || data->tm_die < 60 || \
 	data->tm_eat < 60 || data->tm_sleep < 60)
 		return (ft_putendl_fd("philo : invalid arguments", 2), true);
-	data->eat_counter = -1;
+	data->meals_number = -1;
 	if (ac == 6)
-		data->eat_counter = ft_atoi(av[5]);
+		data->meals_number = ft_atoi(av[5]);
 	if (pthread_mutex_init(&data->catch, NULL))
 		return (ft_putendl_fd("philo : init mutex faillure", 2), true);
 	return (false);
