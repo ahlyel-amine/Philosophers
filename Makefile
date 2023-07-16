@@ -1,7 +1,7 @@
 
 
 SRC =	\
-		src/philo.c src/forks.c src/init_data.c src/jobs.c src/parser.c src/tools.c src/libc_tools.c
+		src/philo.c src/forks.c src/init_data.c src/tools.c src/libft_tools.c
 
 HEADERS = include/philo.h
 # Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo
@@ -14,8 +14,8 @@ OBJ =  $(patsubst %.c, obj/%.o , $(SRC))
 NC			= '\e[0m'
 HBLU		= '\e[1;94m'
 BIN_DIR		= bin/
-CFLAGS		= -Wall -Wextra -Werror 
-#  -fsanitize=thread
+CFLAGS		= -Wall -Wextra -Werror
+#   -fsanitize=thread
 NAME		= philo
 
 all : ${NAME}

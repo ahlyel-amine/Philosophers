@@ -14,6 +14,8 @@
         "_pthread_types.h": "c",
         "__locale": "c",
         "ios": "c",
-        "locale": "c"
-    }
+        "locale": "c",
+        "time.h": "c"
+    },
+    "C_Cpp.dimInactiveRegions": false
 }
