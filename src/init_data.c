@@ -6,7 +6,7 @@
 /*   By: aahlyel <aahlyel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 00:06:28 by aahlyel           #+#    #+#             */
-/*   Updated: 2023/07/16 01:06:52 by aahlyel          ###   ########.fr       */
+/*   Updated: 2023/07/16 07:30:56 by aahlyel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 bool	get_data(t_philo *data, int ac, char **av)
 {
-	dead = false;
+	data->dead = false;
 	data->philos = ft_atoi(av[1]);
 	data->tm_die = ft_atoi(av[2]);
 	data->tm_eat = ft_atoi(av[3]);
@@ -24,18 +24,19 @@ bool	get_data(t_philo *data, int ac, char **av)
 		return (ft_putendl_fd("philo : invalid arguments", 2), true);
 	data->meals_number = -1;
 	if (ac == 6)
+	{
 		data->meals_number = ft_atoi(av[5]);
+		if (data->meals_number < 1)
+			return (ft_putendl_fd("philo : invalid arguments", 2), true);
+	}
 	if (pthread_mutex_init(&data->catch, NULL))
 		return (ft_putendl_fd("philo : init mutex faillure", 2), true);
 	return (false);
 }
-t_philo_single_data	*init_data(t_philo data)
+
+t_philo_single_data	*init_data(t_philo_single_data *mtx, t_philo data)
 {
 	int	i;
-	t_philo_single_data *mtx;
-	mtx = malloc(sizeof(t_philo_single_data) * data.philos);
-	if (!mtx)
-		return (NULL);
 	i = -1;
 	while (++i < data.philos)
 		if (pthread_mutex_init(&mtx[i].left, NULL))

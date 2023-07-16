@@ -6,11 +6,39 @@
 /*   By: aahlyel <aahlyel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 00:10:30 by aahlyel           #+#    #+#             */
-/*   Updated: 2023/07/16 03:24:08 by aahlyel          ###   ########.fr       */
+/*   Updated: 2023/07/16 06:42:07 by aahlyel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
+
+int	str_is_digit(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (!ft_isdigit(str[i]))
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+int	check_syntax(int ac, char **av)
+{
+	int	i;
+
+	i = 1;
+	while (i < ac)
+	{
+		if (!str_is_digit(av[i]))
+			return (0);
+		i++;
+	}
+	return (1);
+}
 
 long long	get_time()
 {
@@ -30,20 +58,11 @@ void	sleep_job_time(long long sleep_time)
 	while (get_time() < start + sleep_time)
 		usleep(1);
 }
-// void	kill_threads(t_philo_single_data *data)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	pthread_mutex_destroy(&data->lp->read);
-// 	pthread_mutex_destroy(&data->lp->deadlock);
-
-// }
 
 void	print_msg(t_philo_single_data *data, int msg, long long time)
 {
 	pthread_mutex_lock(&data->lp->catch);
-	if (dead)
+	if (data->lp->dead)
 	{
 		pthread_mutex_unlock(&data->lp->catch);
 		return ;
