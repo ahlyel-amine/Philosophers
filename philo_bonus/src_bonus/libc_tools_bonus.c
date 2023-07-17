@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft_tools.c                                      :+:      :+:    :+:   */
+/*   libft_tools_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aahlyel <aahlyel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 03:47:36 by aahlyel           #+#    #+#             */
-/*   Updated: 2023/07/16 10:06:47 by aahlyel          ###   ########.fr       */
+/*   Updated: 2023/07/17 05:01:34 by aahlyel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/philo.h"
+#include "../include_bonus/philo_bonus.h"
 
 int	ft_atoi(const char *str)
 {
