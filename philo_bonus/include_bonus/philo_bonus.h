@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.h                                            :+:      :+:    :+:   */
+/*   philo_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aahlyel <aahlyel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 03:28:55 by aahlyel           #+#    #+#             */
-/*   Updated: 2023/07/16 10:04:47 by aahlyel          ###   ########.fr       */
+/*   Updated: 2023/07/17 05:06:04 by aahlyel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 #include <stdbool.h>
 #include <string.h>
 #include <sys/time.h>
+#include <semaphore.h>
 
 #define PHILO_MAX 200
 
@@ -35,15 +36,14 @@ typedef struct s_philo
 	int				meals_number;
 	int				philo_eaten_nbr_meals;
 	long long		time;
-	pthread_mutex_t	catch;
+	sem_t			catch;
 }   t_philo;
-
 typedef struct s_philo_single_data	//?	read
 {
 	int				philo_id;		//?	read
 	long long		time_to_die;	//?	read
-	pthread_mutex_t	left;
-	pthread_mutex_t	*right;
+	sem_t			left;
+	sem_t			*right;;
 	t_philo			*lp;
 	int				eat_counter;
 	bool			eaten;

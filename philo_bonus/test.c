@@ -1,36 +1,45 @@
 #include <unistd.h>
-#include <pthread.h>
 #include <stdio.h>
+#include <sys/semaphore.h>
+#include <sys/wait.h>
+sem_t mtx;
 
-pthread_mutex_t mtx;
-
-int      foo(int *i)
+int      routine(int *i)
 {
     // protect the critical section of you code
     // Our critical section is : *i++
-    pthread_mutex_init(&mtx, NULL); 
     int k = 0;
     while (k++ < 100000)
     {
-        // pthread_mutex_try_lock()
-        // mtx will be accessed by : t1 , t2
-        pthread_mutex_lock(&mtx);
-        printf("lock\n");
-        (*i)++;
-        pthread_mutex_unlock(&mtx);
-        printf("unlock\n");
+        sem_wait(&mtx); 
+        printf("%d lock %d th time\n", *i, k);
+        sleep(1);
+        sem_post(&mtx);
+        printf("%d unlock\n", *i);
     }
-    pthread_mutex_destroy(&mtx);
     return (100);
 }
 
 int main()
 {
-    pthread_t   t1;
-    pthread_t   t2;
-    pthread_t   t3;
     int i = 0;
     printf("\e[1;94m amine \e[0m\n");
+
+    sem_init(&mtx, 0, 1);
+    int a = fork();
+    if (a == -1)
+        return (sem_destroy(&mtx), 1);
+    i = 1;
+    if (!a)
+        routine(&i);
+    i = 2;
+    // int b = fork();
+    // if (b == -1)
+    //     return (sem_destroy(&mtx), 1);
+    // if (!b)
+        routine(&i);
+    // waitpid(a, NULL, 0);
+    // waitpid(b, NULL, 0);
     // //  create t1
     // pthread_create(&t1, NULL, (void *)foo, &i);
     // //  create t2

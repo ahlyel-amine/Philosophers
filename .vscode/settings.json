@@ -15,7 +15,10 @@
         "__locale": "c",
         "ios": "c",
         "locale": "c",
-        "time.h": "c"
+        "time.h": "c",
+        "philo_bonus.h": "c",
+        "semaphore.h": "c",
+        "wait.h": "c"
     },
     "C_Cpp.dimInactiveRegions": false
 }

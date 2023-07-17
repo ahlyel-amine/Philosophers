@@ -6,16 +6,16 @@
 /*   By: aahlyel <aahlyel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 23:57:02 by aahlyel           #+#    #+#             */
-/*   Updated: 2023/07/16 10:08:01 by aahlyel          ###   ########.fr       */
+/*   Updated: 2023/07/17 05:20:31 by aahlyel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
-	t_philo	data;
-	t_philo_single_data mtx[PHILO_MAX];
+	t_philo				data;
+	t_philo_single_data	mtx[PHILO_MAX];
 
 	memset(&data, 0, sizeof(data));
 	if ((ac == 5 || ac == 6))
