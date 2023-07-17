@@ -6,7 +6,7 @@
 /*   By: aahlyel <aahlyel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 00:06:28 by aahlyel           #+#    #+#             */
-/*   Updated: 2023/07/16 07:30:56 by aahlyel          ###   ########.fr       */
+/*   Updated: 2023/07/17 03:58:17 by aahlyel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ bool	get_data(t_philo *data, int ac, char **av)
 	data->tm_die = ft_atoi(av[2]);
 	data->tm_eat = ft_atoi(av[3]);
 	data->tm_sleep = ft_atoi(av[4]);
-	if (data->philos > 200 || data->tm_die < 60 || \
+	if (data->philos > 200 || data->philos < 1 || data->tm_die < 60 || \
 	data->tm_eat < 60 || data->tm_sleep < 60)
 		return (ft_putendl_fd("philo : invalid arguments", 2), true);
 	data->meals_number = -1;
