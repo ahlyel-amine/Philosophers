@@ -6,7 +6,7 @@
 /*   By: aahlyel <aahlyel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 00:10:30 by aahlyel           #+#    #+#             */
-/*   Updated: 2023/07/16 06:42:07 by aahlyel          ###   ########.fr       */
+/*   Updated: 2023/07/17 04:09:42 by aahlyel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	sleep_job_time(long long sleep_time)
 
 	start = get_time();
 	while (get_time() < start + sleep_time)
-		usleep(1);
+		usleep(100);
 }
 
 void	print_msg(t_philo_single_data *data, int msg, long long time)
