@@ -6,7 +6,7 @@
 /*   By: aahlyel <aahlyel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 23:57:02 by aahlyel           #+#    #+#             */
-/*   Updated: 2023/07/17 05:01:36 by aahlyel          ###   ########.fr       */
+/*   Updated: 2023/07/18 14:16:56 by aahlyel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int main(int ac, char **av)
 {
 	t_philo	data;
-	t_philo_single_data mtx[PHILO_MAX];
 
 	memset(&data, 0, sizeof(data));
 	if ((ac == 5 || ac == 6))
@@ -26,7 +25,7 @@ int main(int ac, char **av)
 			return (1);
 	}
 	if (ac == 5 || ac == 6)
-		take_forks(init_data((t_philo_single_data *)mtx, data), data);
+		take_forks(data);
 	else
 		return (ft_putendl_fd("invalid arguments", 2), 0);
 	return (0);
