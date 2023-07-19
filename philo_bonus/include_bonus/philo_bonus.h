@@ -6,7 +6,7 @@
 /*   By: aahlyel <aahlyel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 03:28:55 by aahlyel           #+#    #+#             */
-/*   Updated: 2023/07/19 07:59:01 by aahlyel          ###   ########.fr       */
+/*   Updated: 2023/07/19 09:08:04 by aahlyel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,10 @@
 #include <signal.h>
 
 #define PHILO_MAX 200
-
+#define SEMAPHORE_NAME "/tmp/sem_"
 
 typedef struct s_philo
 {
-	int				dead;
 	int				philos;
 	int				tm_eat;
 	int				tm_sleep;
@@ -38,10 +37,10 @@ typedef struct s_philo
 	long long		time;
 	sem_t			*catch;
 }   t_philo;
-typedef struct s_philo_single_data	//?	read
+typedef struct s_philo_single_data
 {
-	int				philo_id;		//?	read
-	long long		time_to_die;	//?	read
+	int				philo_id;
+	long long		time_to_die;
 	t_philo			*lp;
 	int				eat_counter;
 }   t_philo_single_data;
@@ -61,14 +60,13 @@ int					ft_isdigit(int c);
 void				ft_putendl_fd(char *s, int fd);
 int					check_syntax(int ac, char **av);
 bool				get_data(t_philo *data, int ac, char **av);
-// t_philo_single_data	*init_data(t_philo data);
 void				take_forks(t_philo data);
 void				_eat(t_philo_single_data *data);
 void				_sleep(t_philo_single_data *data);
 void				_think(t_philo_single_data *data);
 long long			get_time();
 void				sleep_job_time(long long sleep_time);
-void				print_msg(t_philo_single_data *data, int msg, long long time);
+void				print_msg(int msg, long long time);
 
 
 #endif

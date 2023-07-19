@@ -6,7 +6,7 @@
 /*   By: aahlyel <aahlyel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 00:06:28 by aahlyel           #+#    #+#             */
-/*   Updated: 2023/07/19 07:59:39 by aahlyel          ###   ########.fr       */
+/*   Updated: 2023/07/19 09:03:31 by aahlyel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 bool	get_data(t_philo *data, int ac, char **av)
 {
-	data->dead = false;
 	data->philos = ft_atoi(av[1]);
 	data->tm_die = ft_atoi(av[2]);
 	data->tm_eat = ft_atoi(av[3]);

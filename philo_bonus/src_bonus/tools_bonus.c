@@ -6,7 +6,7 @@
 /*   By: aahlyel <aahlyel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 00:10:30 by aahlyel           #+#    #+#             */
-/*   Updated: 2023/07/19 07:54:46 by aahlyel          ###   ########.fr       */
+/*   Updated: 2023/07/19 09:07:12 by aahlyel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	sleep_job_time(long long sleep_time)
 		usleep(100);
 }
 
-void	print_msg(t_philo_single_data *data, int msg, long long time)
+void	print_msg(int msg, long long time)
 {
 	if (msg & EAT)
 		printf("%lld philo %d is eating\n", get_time() - time, msg >> 8);
@@ -69,4 +69,6 @@ void	print_msg(t_philo_single_data *data, int msg, long long time)
 		printf("%lld philo %d is thinking\n", get_time() - time, msg >> 8);
 	else if (msg & FORK)
 		printf("%lld philo %d has taken a fork\n", get_time() - time, msg >> 8);
+	else if (msg & DEAD)
+		printf("%lld philo %d is dead\n", get_time() - time, msg >> 8);
 }
