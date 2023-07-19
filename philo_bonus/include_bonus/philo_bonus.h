@@ -6,7 +6,7 @@
 /*   By: aahlyel <aahlyel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 03:28:55 by aahlyel           #+#    #+#             */
-/*   Updated: 2023/07/18 14:17:28 by aahlyel          ###   ########.fr       */
+/*   Updated: 2023/07/19 07:59:01 by aahlyel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 #include <string.h>
 #include <sys/time.h>
 #include <semaphore.h>
+#include <signal.h>
 
 #define PHILO_MAX 200
 
@@ -34,7 +35,6 @@ typedef struct s_philo
 	int				tm_sleep;
 	int				tm_die;
 	int				meals_number;
-	int				philo_eaten_nbr_meals;
 	long long		time;
 	sem_t			*catch;
 }   t_philo;
@@ -42,11 +42,8 @@ typedef struct s_philo_single_data	//?	read
 {
 	int				philo_id;		//?	read
 	long long		time_to_die;	//?	read
-	sem_t			left;
-	sem_t			*right;;
 	t_philo			*lp;
 	int				eat_counter;
-	bool			eaten;
 }   t_philo_single_data;
 
 enum enum_msg
