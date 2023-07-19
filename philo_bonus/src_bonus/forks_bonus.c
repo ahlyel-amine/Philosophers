@@ -6,7 +6,7 @@
 /*   By: aahlyel <aahlyel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 00:11:43 by aahlyel           #+#    #+#             */
-/*   Updated: 2023/07/18 16:43:06 by aahlyel          ###   ########.fr       */
+/*   Updated: 2023/07/19 01:55:25 by aahlyel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ static void	routine(t_philo_single_data *data)
 	long long	start;
 	int			exit_;
 	pthread_t	thread;
-
 	data->time_to_die = get_time() + data->lp->tm_die;
 	// data->lp->catch = sem_open("semaphore", O_CREAT | O_EXCL, S_IRUSR | S_IWUSR, 1);
 	pthread_create(&thread, NULL, (void *)listener, data);
@@ -107,7 +106,9 @@ static void	routine(t_philo_single_data *data)
 		sem_wait(data->lp->catch);
 	}
 	sem_post(data->lp->catch);
-	pthread_join(thread, NULL);
+	// printf("alo %d\n", data->philo_id);
+	// pthread_detach(thread);
+	// printf("alo_ %d\n", data->philo_id);
 	exit(exit_);
 }
 
