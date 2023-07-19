@@ -6,7 +6,7 @@
 /*   By: aahlyel <aahlyel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 03:28:55 by aahlyel           #+#    #+#             */
-/*   Updated: 2023/07/16 10:04:47 by aahlyel          ###   ########.fr       */
+/*   Updated: 2023/07/17 11:58:24 by aahlyel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 #include <stdbool.h>
 #include <string.h>
 #include <sys/time.h>
+#include <semaphore.h>
+#include <errno.h>
 
 #define PHILO_MAX 200
 
