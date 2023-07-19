@@ -1,27 +1,25 @@
+SRC =	src_bonus/philo_bonus.c src_bonus/forks_bonus.c src_bonus/init_data_bonus.c src_bonus/tools_bonus.c src_bonus/libc_tools_bonus.c
 
-
-SRC =	\
-		src/philo.c src/forks.c src/init_data.c src/tools.c src/libc_tools.c
-
-HEADERS = include/philo.h
+HEADERS = include_bonus/philo_bonus.h
 
 CC = cc
 
-OBJ =  $(patsubst %.c, obj/%.o , $(SRC))
+OBJ_DIR = obj_bonus
+
+OBJ =  $(patsubst %.c, obj_bonus/%.o , $(SRC))
 
 NC			= '\e[0m'
 HBLU		= '\e[1;94m'
-BIN_DIR		= bin/
-OBJ_DIR 	= obj
-CFLAGS		= -Wall -Wextra -Werror # -fsanitize=thread
-NAME		= philo
+BIN_DIR		= bin_bonus/
+CFLAGS		=   -fsanitize=thread
+NAME		= philo_bonus
 
 all : ${NAME}
 
 ${NAME} : ${OBJ}
 	cc -g ${CFLAGS} ${OBJ} -o ${NAME}
 
-obj/%.o : %.c $(HEADERS)
+obj_bonus/%.o : %.c $(HEADERS)
 	mkdir -p $(dir $@)
 	printf ${HBLU}"[%-37s] 🕝 \r"$(NC) "Compiling $(notdir $@)"
 	$(CC) -g $(CFLAGS) -c $< -o $@

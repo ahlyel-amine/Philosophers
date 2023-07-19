@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tools.c                                            :+:      :+:    :+:   */
+/*   tools_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aahlyel <aahlyel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 00:10:30 by aahlyel           #+#    #+#             */
-/*   Updated: 2023/07/17 04:09:42 by aahlyel          ###   ########.fr       */
+/*   Updated: 2023/07/18 14:18:21 by aahlyel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/philo.h"
+#include "../include_bonus/philo_bonus.h"
 
 int	str_is_digit(char *str)
 {
@@ -61,13 +61,13 @@ void	sleep_job_time(long long sleep_time)
 
 void	print_msg(t_philo_single_data *data, int msg, long long time)
 {
-	pthread_mutex_lock(&data->lp->catch);
+	sem_wait(data->lp->catch);
 	if (data->lp->dead)
 	{
-		pthread_mutex_unlock(&data->lp->catch);
+		sem_post(data->lp->catch);
 		return ;
 	}
-	pthread_mutex_unlock(&data->lp->catch);
+	sem_post(data->lp->catch);
 	if (msg & EAT)
 		printf("%lld philo %d is eating\n", get_time() - time, msg >> 8);
 	else if (msg & SLEEP)

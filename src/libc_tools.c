@@ -6,7 +6,7 @@
 /*   By: aahlyel <aahlyel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 03:47:36 by aahlyel           #+#    #+#             */
-/*   Updated: 2023/07/16 10:06:47 by aahlyel          ###   ########.fr       */
+/*   Updated: 2023/07/17 05:05:04 by aahlyel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	ft_atoi(const char *str)
 {
 	int		sign;
 	long	res;
+
 
 	sign = 1;
 	res = 0;

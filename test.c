@@ -30,16 +30,16 @@ int main()
     pthread_t   t2;
     pthread_t   t3;
     int i = 0;
-
-    //  create t1
-    pthread_create(&t1, NULL, (void *)foo, &i);
-    //  create t2
-    pthread_create(&t2, NULL, (void *)foo, &i);
-    pthread_create(&t3, NULL, (void *)foo, &i);
-    /* Waiting for threads t1, t2, main thread*/
-    pthread_join(t1, NULL);
-    pthread_join(t2, NULL);
-    pthread_join(t3, NULL);
-    printf("%d\n", i);    
+    printf("\e[1;94m amine \e[0m\n");
+    // //  create t1
+    // pthread_create(&t1, NULL, (void *)foo, &i);
+    // //  create t2
+    // pthread_create(&t2, NULL, (void *)foo, &i);
+    // pthread_create(&t3, NULL, (void *)foo, &i);
+    // /* Waiting for threads t1, t2, main thread*/
+    // pthread_join(t1, NULL);
+    // pthread_join(t2, NULL);
+    // pthread_join(t3, NULL);
+    // printf("%d\n", i);    
     return (0);
 }
