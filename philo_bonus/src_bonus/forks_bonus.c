@@ -6,7 +6,7 @@
 /*   By: aahlyel <aahlyel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 00:11:43 by aahlyel           #+#    #+#             */
-/*   Updated: 2023/07/19 01:55:25 by aahlyel          ###   ########.fr       */
+/*   Updated: 2023/07/19 02:04:39 by aahlyel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ static void	listener(t_philo_single_data *data, int philos)
 		// {
 		// 	sem_post(data->lp->catch);
 		// 	return ;
-		// }
 		sem_post(data->lp->catch);
 		usleep(100);
 	}
