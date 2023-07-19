@@ -11,7 +11,7 @@ OBJ =  $(patsubst %.c, obj_bonus/%.o , $(SRC))
 NC			= '\e[0m'
 HBLU		= '\e[1;94m'
 BIN_DIR		= bin_bonus/
-CFLAGS		=   -fsanitize=thread
+CFLAGS		=  # -fsanitize=thread
 NAME		= philo_bonus
 
 all : ${NAME}
