@@ -6,17 +6,16 @@
 /*   By: aahlyel <aahlyel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 23:57:02 by aahlyel           #+#    #+#             */
-/*   Updated: 2023/07/18 14:16:56 by aahlyel          ###   ########.fr       */
+/*   Updated: 2023/07/20 05:32:17 by aahlyel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include_bonus/philo_bonus.h"
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
 	t_philo	data;
 
-	memset(&data, 0, sizeof(data));
 	if ((ac == 5 || ac == 6))
 	{
 		if (!check_syntax(ac, av))

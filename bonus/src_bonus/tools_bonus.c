@@ -6,7 +6,7 @@
 /*   By: aahlyel <aahlyel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 00:10:30 by aahlyel           #+#    #+#             */
-/*   Updated: 2023/07/19 09:07:12 by aahlyel          ###   ########.fr       */
+/*   Updated: 2023/07/20 05:27:18 by aahlyel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,10 @@ int	check_syntax(int ac, char **av)
 	return (1);
 }
 
-long long	get_time()
+long long	get_time(void)
 {
 	struct timeval	tv;
-	long long	time_;
+	long long		time_;
 
 	gettimeofday(&tv, NULL);
 	time_ = tv.tv_sec * 1000 + tv.tv_usec / 1000;
@@ -59,9 +59,15 @@ void	sleep_job_time(long long sleep_time)
 		usleep(100);
 }
 
-void	print_msg(int msg, long long time)
+void	print_msg(t_philo_single_data *data, int msg, long long time)
 {
-	if (msg & EAT)
+	sem_wait(data->lp->dead);
+	if (msg & DEAD)
+	{
+		printf("%lld philo %d is dead\n", get_time() - time, msg >> 8);
+		return ;
+	}
+	else if (msg & EAT)
 		printf("%lld philo %d is eating\n", get_time() - time, msg >> 8);
 	else if (msg & SLEEP)
 		printf("%lld philo %d is sleeping\n", get_time() - time, msg >> 8);
@@ -69,6 +75,5 @@ void	print_msg(int msg, long long time)
 		printf("%lld philo %d is thinking\n", get_time() - time, msg >> 8);
 	else if (msg & FORK)
 		printf("%lld philo %d has taken a fork\n", get_time() - time, msg >> 8);
-	else if (msg & DEAD)
-		printf("%lld philo %d is dead\n", get_time() - time, msg >> 8);
+	sem_post(data->lp->dead);
 }

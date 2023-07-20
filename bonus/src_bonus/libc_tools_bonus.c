@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft_tools_bonus.c                                :+:      :+:    :+:   */
+/*   libc_tools_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aahlyel <aahlyel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 03:47:36 by aahlyel           #+#    #+#             */
-/*   Updated: 2023/07/17 05:01:34 by aahlyel          ###   ########.fr       */
+/*   Updated: 2023/07/20 05:37:28 by aahlyel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,13 @@ size_t	ft_strlen(const char *s)
 	while (*c)
 		c++;
 	return ((c - s));
+}
+
+void	killall(int nbr_of_philo, t_philo_single_data *philos)
+{
+	int	i;
+
+	i = 0;
+	while (i < nbr_of_philo)
+		kill(philos[i++].lp->pid, SIGKILL);
 }
