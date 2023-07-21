@@ -6,15 +6,16 @@
 /*   By: aahlyel <aahlyel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 00:11:43 by aahlyel           #+#    #+#             */
-/*   Updated: 2023/07/20 06:02:28 by aahlyel          ###   ########.fr       */
+/*   Updated: 2023/07/21 04:16:24 by aahlyel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-void	_eat(t_philo_single_data *data)
+static void	_eat(t_philo_single_data *data)
 {
-	pthread_mutex_lock(&data->left);
+	if (pthread_mutex_lock(&data->left))
+		return ;
 	print_msg(data, (data->philo_id << 8) | FORK, data->lp->time);
 	if (data->lp->philos == 1)
 	{
@@ -22,16 +23,19 @@ void	_eat(t_philo_single_data *data)
 		pthread_mutex_unlock(&data->left);
 		return ;
 	}
-	pthread_mutex_lock(data->right);
+	if (pthread_mutex_lock(data->right))
+		return ;
 	print_msg(data, (data->philo_id << 8) | FORK, data->lp->time);
-	pthread_mutex_lock(&data->lp->catch);
+	if (pthread_mutex_lock(&data->lp->catch))
+		return ;
 	data->time_to_die = get_time() + data->lp->tm_die;
 	data->eat_counter++;
-	pthread_mutex_unlock(&data->lp->catch);
+	if (pthread_mutex_unlock(&data->lp->catch))
+		return ;
 	print_msg(data, (data->philo_id << 8) | EAT, data->lp->time);
 	sleep_job_time(data->lp->tm_eat);
-	pthread_mutex_unlock(&data->left);
-	pthread_mutex_unlock(data->right);
+	if (pthread_mutex_unlock(&data->left) || pthread_mutex_unlock(data->right))
+		return ;
 	print_msg(data, (data->philo_id << 8) | SLEEP, data->lp->time);
 	sleep_job_time(data->lp->tm_sleep);
 	print_msg(data, (data->philo_id << 8) | THINK, data->lp->time);
@@ -39,7 +43,8 @@ void	_eat(t_philo_single_data *data)
 
 static int	watch_philo(t_philo_single_data *data, long long start)
 {
-	pthread_mutex_lock(&data->lp->catch);
+	if (pthread_mutex_lock(&data->lp->catch))
+		return (1);
 	if (data->lp->dead)
 		return (pthread_mutex_unlock(&data->lp->catch), 1);
 	if (start > data->time_to_die)
@@ -55,8 +60,7 @@ static int	watch_philo(t_philo_single_data *data, long long start)
 		data->eaten = true;
 		data->lp->philo_eaten_nbr_meals += 1;
 	}
-	if (data->lp->meals_number != -1 \
-	&& data->lp->philo_eaten_nbr_meals == data->lp->philos)
+	if (data->lp->philo_eaten_nbr_meals == data->lp->philos)
 	{
 		data->lp->dead = true;
 		return (pthread_mutex_unlock(&data->lp->catch), 1);
@@ -92,21 +96,24 @@ static void	routine(t_philo_single_data *data)
 {
 	if (!(data->philo_id % 2))
 		sleep_job_time(data->lp->tm_eat);
-	pthread_mutex_lock(&data->lp->catch);
+	if (pthread_mutex_lock(&data->lp->catch))
+		return ;
 	data->time_to_die = get_time() + data->lp->tm_die;
 	while (!data->lp->dead)
 	{
-		pthread_mutex_unlock(&data->lp->catch);
+		if (pthread_mutex_unlock(&data->lp->catch))
+			return ;
 		_eat(data);
-		pthread_mutex_lock(&data->lp->catch);
+		if (pthread_mutex_lock(&data->lp->catch))
+			return ;
 	}
-	pthread_mutex_unlock(&data->lp->catch);
+	if (pthread_mutex_unlock(&data->lp->catch))
+		return ;
 }
 
 void	take_forks(t_philo_single_data *philos, t_philo data)
 {
-	int			i;
-	pthread_t	threads[PHILO_MAX];
+	int	i;
 
 	i = 0;
 	data.time = get_time();
@@ -118,11 +125,14 @@ void	take_forks(t_philo_single_data *philos, t_philo data)
 		philos[i].eat_counter = 0;
 		philos[i].time_to_die = get_time() + data.tm_die;
 		philos[i].eaten = false;
-		pthread_create(&threads[i], NULL, (void *)routine, &(philos[i]));
+		if (pthread_create(&(philos[i].thread), \
+		NULL, (void *)routine, &(philos[i])))
+		{
+			join_destroy(philos, data, i, data.philos);
+			return ;
+		}
 		i++;
 	}
-	i = 0;
 	listener(philos, data.philos);
-	while (i < data.philos)
-		pthread_join(threads[i++], NULL);
+	join_destroy(philos, data, data.philos, data.philos);
 }

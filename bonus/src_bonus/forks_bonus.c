@@ -6,7 +6,7 @@
 /*   By: aahlyel <aahlyel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 00:11:43 by aahlyel           #+#    #+#             */
-/*   Updated: 2023/07/20 06:03:09 by aahlyel          ###   ########.fr       */
+/*   Updated: 2023/07/21 04:19:52 by aahlyel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void	take_forks(t_philo data)
 		philos[i].eat_counter = 0;
 		philos[i].lp->pid = fork();
 		if (philos[i].lp->pid == -1)
-			return ;
+			return (killall(i, philos));
 		if (!philos[i].lp->pid)
 			routine(&philos[i]);
 	}

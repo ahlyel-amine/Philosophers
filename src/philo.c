@@ -6,7 +6,7 @@
 /*   By: aahlyel <aahlyel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 23:57:02 by aahlyel           #+#    #+#             */
-/*   Updated: 2023/07/17 05:20:31 by aahlyel          ###   ########.fr       */
+/*   Updated: 2023/07/21 00:50:45 by aahlyel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int	main(int ac, char **av)
 	t_philo				data;
 	t_philo_single_data	mtx[PHILO_MAX];
 
-	memset(&data, 0, sizeof(data));
 	if ((ac == 5 || ac == 6))
 	{
 		if (!check_syntax(ac, av))
