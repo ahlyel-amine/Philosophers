@@ -6,24 +6,24 @@
 /*   By: aahlyel <aahlyel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 00:10:30 by aahlyel           #+#    #+#             */
-/*   Updated: 2023/07/20 04:31:15 by aahlyel          ###   ########.fr       */
+/*   Updated: 2023/07/21 04:16:42 by aahlyel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-int	str_is_digit(char *str)
+void	join_destroy(t_philo_single_data *philos, \
+t_philo data, int join, int destroy)
 {
 	int	i;
 
 	i = 0;
-	while (str[i])
-	{
-		if (!ft_isdigit(str[i]))
-			return (0);
-		i++;
-	}
-	return (1);
+	while (i < join)
+		pthread_join(philos[i++].thread, NULL);
+	pthread_mutex_destroy(&data.catch);
+	i = 0;
+	while (i < destroy)
+		pthread_mutex_destroy(&philos[i++].left);
 }
 
 int	check_syntax(int ac, char **av)
@@ -45,7 +45,8 @@ long long	get_time(void)
 	struct timeval	tv;
 	long long		time_;
 
-	gettimeofday(&tv, NULL);
+	if (gettimeofday(&tv, NULL) == -1)
+		return (__LONG_MAX__);
 	time_ = tv.tv_sec * 1000 + tv.tv_usec / 1000;
 	return (time_);
 }
@@ -61,13 +62,15 @@ void	sleep_job_time(long long sleep_time)
 
 void	print_msg(t_philo_single_data *data, int msg, long long time)
 {
-	pthread_mutex_lock(&data->lp->catch);
+	if (pthread_mutex_lock(&data->lp->catch))
+		return ;
 	if (data->lp->dead)
 	{
 		pthread_mutex_unlock(&data->lp->catch);
 		return ;
 	}
-	pthread_mutex_unlock(&data->lp->catch);
+	if (pthread_mutex_unlock(&data->lp->catch))
+		return ;
 	if (msg & EAT)
 		printf("%lld philo %d is eating\n", get_time() - time, msg >> 8);
 	else if (msg & SLEEP)

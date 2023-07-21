@@ -6,7 +6,7 @@
 /*   By: aahlyel <aahlyel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 03:28:55 by aahlyel           #+#    #+#             */
-/*   Updated: 2023/07/20 06:02:14 by aahlyel          ###   ########.fr       */
+/*   Updated: 2023/07/21 04:21:23 by aahlyel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct s_philo_single_data
 	t_philo			*lp;
 	int				eat_counter;
 	bool			eaten;
+	pthread_t		thread;
 }	t_philo_single_data;
 
 enum	e_msg
@@ -70,8 +71,10 @@ void				_sleep(t_philo_single_data *data);
 void				_think(t_philo_single_data *data);
 long long			get_time(void);
 void				sleep_job_time(long long sleep_time);
+t_philo_single_data	*init_data(t_philo_single_data *mtx, t_philo data);
 void				print_msg(t_philo_single_data *data, int msg, \
 long long time);
-t_philo_single_data	*init_data(t_philo_single_data *mtx, t_philo data);
+void				join_destroy(t_philo_single_data *philos, \
+t_philo data, int join, int destroy);
 
 #endif

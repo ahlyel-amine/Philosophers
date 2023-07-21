@@ -6,7 +6,7 @@
 /*   By: aahlyel <aahlyel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 00:10:30 by aahlyel           #+#    #+#             */
-/*   Updated: 2023/07/20 05:27:18 by aahlyel          ###   ########.fr       */
+/*   Updated: 2023/07/21 04:18:34 by aahlyel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ long long	get_time(void)
 	struct timeval	tv;
 	long long		time_;
 
-	gettimeofday(&tv, NULL);
+	if (gettimeofday(&tv, NULL) == -1)
+		return (__LONG_LONG_MAX__);
 	time_ = tv.tv_sec * 1000 + tv.tv_usec / 1000;
 	return (time_);
 }

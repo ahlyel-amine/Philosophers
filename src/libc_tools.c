@@ -6,7 +6,7 @@
 /*   By: aahlyel <aahlyel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 03:47:36 by aahlyel           #+#    #+#             */
-/*   Updated: 2023/07/20 04:31:03 by aahlyel          ###   ########.fr       */
+/*   Updated: 2023/07/21 04:15:07 by aahlyel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,18 @@ size_t	ft_strlen(const char *s)
 	while (*c)
 		c++;
 	return ((c - s));
+}
+
+int	str_is_digit(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (!ft_isdigit(str[i]))
+			return (0);
+		i++;
+	}
+	return (1);
 }

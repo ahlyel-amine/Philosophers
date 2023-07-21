@@ -6,7 +6,7 @@
 /*   By: aahlyel <aahlyel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 00:06:28 by aahlyel           #+#    #+#             */
-/*   Updated: 2023/07/20 04:30:55 by aahlyel          ###   ########.fr       */
+/*   Updated: 2023/07/21 04:07:56 by aahlyel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ t_philo_single_data	*init_data(t_philo_single_data *mtx, t_philo data)
 	i = -1;
 	while (++i < data.philos)
 		if (pthread_mutex_init(&mtx[i].left, NULL))
-			return (free(mtx), \
+			return (join_destroy(mtx, data, 0, i), \
 			ft_putendl_fd("philo : init mutex faillure", 2), \
 			NULL);
 	mtx[0].right = &mtx[data.philos - 1].left;
