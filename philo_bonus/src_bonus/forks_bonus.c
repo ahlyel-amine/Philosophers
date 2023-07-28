@@ -102,7 +102,7 @@ void	take_forks(t_philo data)
 	}
 	while (data.philos)
 	{
-		wait(&status);
+		waitpid(-1, &status, 0);
 		if (WEXITSTATUS(status))
 			return (killall(philos->lp->philos, philos));
 		data.philos--;
