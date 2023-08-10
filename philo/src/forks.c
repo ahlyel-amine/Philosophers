@@ -6,7 +6,7 @@
 /*   By: aahlyel <aahlyel@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 00:11:43 by aahlyel           #+#    #+#             */
-/*   Updated: 2023/07/26 10:48:17 by aahlyel          ###   ########.fr       */
+/*   Updated: 2023/08/10 04:46:09 by aahlyel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,19 @@ static void	_eat(t_philo_single_data *data)
 	print_msg(data, (data->philo_id << 8) | FORK, data->lp->time);
 	if (pthread_mutex_lock(&data->lp->catch))
 		return ;
+	data->eaten = true;
 	data->time_to_die = get_time() + data->lp->tm_die;
 	data->eat_counter++;
 	if (pthread_mutex_unlock(&data->lp->catch))
 		return ;
 	print_msg(data, (data->philo_id << 8) | EAT, data->lp->time);
 	sleep_job_time(data->lp->tm_eat);
-	if (pthread_mutex_unlock(&data->left) || pthread_mutex_unlock(data->right))
+	if (pthread_mutex_lock(&data->lp->catch))
+		return ;
+	data->eaten = false;
+
+	if (pthread_mutex_unlock(&data->lp->catch) || \
+	pthread_mutex_unlock(&data->left) || pthread_mutex_unlock(data->right))
 		return ;
 	print_msg(data, (data->philo_id << 8) | SLEEP, data->lp->time);
 	sleep_job_time(data->lp->tm_sleep);
@@ -47,7 +53,7 @@ static int	watch_philo(t_philo_single_data *data, long long start)
 		return (1);
 	if (data->lp->dead)
 		return (pthread_mutex_unlock(&data->lp->catch), 1);
-	if (start > data->time_to_die)
+	if (!data->eaten && start > data->time_to_die)
 	{
 		printf("%lld philo %d is dead\n", get_time() - data->lp->time, \
 		data->philo_id);
